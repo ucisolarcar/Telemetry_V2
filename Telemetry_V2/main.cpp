@@ -14,3 +14,14 @@ int main()
         std::cout << "Signal ID does not exist\n";
     }
 }
+
+
+/* 
+
+TODO for complete demo: 
+- simulate data stream input
+- write "app" layer
+- message decoder
+- put the CAN library in the repo
+
+*/

@@ -51,6 +51,9 @@ struct SignalInfo {
 
 extern const std::unordered_map<SignalID, SignalInfo> SIGNAL_INFO;
 
+// using DecoderFn = should be some standardized return type
+// extern const std::unordered_map<CanID, DecoderFn
+
 class Telemetry
 {
 private:
