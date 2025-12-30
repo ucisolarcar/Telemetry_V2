@@ -22,5 +22,9 @@ const std::unordered_map<SignalID, SignalInfo> SIGNAL_INFO {
 	{ SignalID::MPPT_4_OutputCurrent, { "Output Current", "A", false} },
 };
 
+const std::unordered_map<uint32_t, DecoderFn> DECODERS {
+	{ 0x300, testFunction },
+};
+
 Telemetry::Telemetry() {}
 Telemetry::~Telemetry() {}

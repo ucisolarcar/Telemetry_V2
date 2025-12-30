@@ -6,7 +6,9 @@
 
 #include <iostream> // don't use this if we don't need to
 
-enum class CanID : uint32_t { // change the naming convention
+#include "Decoders.h"
+
+enum class CanID : uint32_t { // TODO determine if this is even necessary
 	MPPT_1_POWER_MEASUREMENTS = 0X200,
 	MPPT_1_STATUS = 0x201,
 	MPPT_2_POWER_MEASUREMENTS = 0X210,
@@ -17,6 +19,7 @@ enum class CanID : uint32_t { // change the naming convention
 	MPPT_4_STATUS = 0x231
 };
 
+// TODO determine if this is even necessary
 enum SignalID { // regular enum so that it will work as indexes to hashed data structures
 	MPPT_1_InputVoltage,
 	MPPT_1_OutputVoltage,
@@ -51,8 +54,10 @@ struct SignalInfo {
 
 extern const std::unordered_map<SignalID, SignalInfo> SIGNAL_INFO;
 
-// using DecoderFn = should be some standardized return type
-// extern const std::unordered_map<CanID, DecoderFn
+// using DecoderFn = void(*)(uint8_t buffer[8]); // TODO: change this to the actual function definition structure
+// extern const std::unordered_map<CanID, DecoderFn> DECODERS;
+using DecoderFn = void(*)(const char* buffer);
+extern const std::unordered_map<uint32_t, DecoderFn> DECODERS;
 
 class Telemetry
 {
