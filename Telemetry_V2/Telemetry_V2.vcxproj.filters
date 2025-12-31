@@ -24,12 +24,21 @@
     <ClCompile Include="Decoders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Signals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Telemetry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Decoders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Signals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

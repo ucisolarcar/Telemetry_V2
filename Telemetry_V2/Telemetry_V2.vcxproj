@@ -130,11 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Decoders.cpp" />
+    <ClCompile Include="Signals.cpp" />
     <ClCompile Include="Telemetry.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Decoders.h" />
+    <ClInclude Include="Signals.h" />
+    <ClInclude Include="Simulation.hpp" />
     <ClInclude Include="Telemetry.h" />
   </ItemGroup>
   <ItemGroup>
