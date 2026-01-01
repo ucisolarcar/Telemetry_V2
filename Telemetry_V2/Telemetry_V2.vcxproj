@@ -129,13 +129,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="Decoders.cpp" />
+    <ClCompile Include="Serial.cpp" />
     <ClCompile Include="Signals.cpp" />
     <ClCompile Include="Telemetry.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Client.h" />
     <ClInclude Include="Decoders.h" />
+    <ClInclude Include="Serial.h" />
     <ClInclude Include="Signals.h" />
     <ClInclude Include="Simulation.hpp" />
     <ClInclude Include="Telemetry.h" />

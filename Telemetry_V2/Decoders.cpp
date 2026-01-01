@@ -1,20 +1,30 @@
 #include "Decoders.h"
 
 void Decoders::mppt_power_measurements(uint8_t buffer[BUF_SIZE]) {
-	// We might need 4 of these functions for each MPPT
-	// or at least have a helper function that just calls this function once it decides what MPPT we are working with
-
 	std::cout << "Decoding MPPT Power Measurements\n";
 
 	assert(buffer != nullptr);
 
 	MPPT parser;
 	powerMeasurements pm;
-
 	pm = parser.parsePowerMeasurements(buffer);
-	std::cout << "Input voltage: " << pm.inVoltage << " V" << std::endl;
-	std::cout << "Input current: " << pm.inCurrent << " A" << std::endl;
-	std::cout << "Output voltage: " << pm.outVoltage << " V" << std::endl;
-	std::cout << "Output current: " << pm.outCurrent << " A" << std::endl;
-	// instead of printing these, write them to the signals data structure
+
+	Signal signal;
+
+	// Update all signals relevant to this CAN Frame
+	signal.value = static_cast<double>(pm.inVoltage);
+	signal.info = &SIGNAL_INFO.find(SignalID::MPPT_1_InputVoltage)->second;
+	SIGNAL_MANAGER.updateSignal(MPPT_1_InputVoltage, signal);
+
+	signal.value = static_cast<double>(pm.inCurrent);
+	signal.info = &SIGNAL_INFO.find(SignalID::MPPT_1_InputCurrent)->second;
+	SIGNAL_MANAGER.updateSignal(MPPT_1_InputCurrent, signal);
+
+	signal.value = static_cast<double>(pm.outVoltage);
+	signal.info = &SIGNAL_INFO.find(SignalID::MPPT_1_OutputVoltage)->second;
+	SIGNAL_MANAGER.updateSignal(MPPT_1_OutputVoltage, signal);
+
+	signal.value = static_cast<double>(pm.outCurrent);
+	signal.info = &SIGNAL_INFO.find(SignalID::MPPT_1_OutputCurrent)->second;
+	SIGNAL_MANAGER.updateSignal(MPPT_1_OutputCurrent, signal);
 }

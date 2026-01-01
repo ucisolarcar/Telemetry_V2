@@ -5,8 +5,8 @@
 #include <iostream>
 #include <unordered_map>
 
-// TODO determine if this is even necessary
-enum SignalID { // regular enum so that it will work as indexes to hashed data structures
+// TODO - this feels unnecessary so think of another way
+enum SignalID {
 	MPPT_1_InputVoltage,
 	MPPT_1_OutputVoltage,
 	MPPT_1_InputCurrent,
@@ -25,17 +25,18 @@ enum SignalID { // regular enum so that it will work as indexes to hashed data s
 	MPPT_4_OutputCurrent,
 };
 
-// stores live data
-struct Signal {
-	double value; // normalize all data to double types
-	int64_t timestamp; // update this every time
-};
-
 // metadata for the signal
 struct SignalInfo {
 	std::string title;
 	std::string unit; // volts, amps, etc
 	bool is_fault;
+	uint32_t can_id;
+};
+
+// stores live data
+struct Signal {
+	double value; // normalize all data to double types
+	const SignalInfo* info; // reference to the signal metadata
 };
 
 extern const std::unordered_map<SignalID, SignalInfo> SIGNAL_INFO;
@@ -43,10 +44,12 @@ extern const std::unordered_map<SignalID, SignalInfo> SIGNAL_INFO;
 class SignalManager
 {
 private:
-	// std::unordered_map<CanID, Signal> data;
 
 public:
+	std::unordered_map<SignalID, Signal> signals;
 	SignalManager();
 	~SignalManager();
 	void updateSignal(SignalID id, Signal data);
 };
+
+extern SignalManager SIGNAL_MANAGER; // TODO - change the naems to g_signalManager or something to indicate global

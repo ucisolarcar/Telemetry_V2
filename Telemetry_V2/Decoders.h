@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <assert.h>
+#include <ctime>
+#include <string>
 
 #include "mppt.h"
 #include "bms.h"
