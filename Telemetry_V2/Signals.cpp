@@ -2,8 +2,7 @@
 
 SignalManager g_signal_manager; // Global signal manager instantiation
 
-// This will be a static data structure that can be referenced when pushing data to the database
-// TODO: add the CAN ID to this signal map
+// Referenced by Signal structs
 const std::unordered_map<SignalID, SignalInfo> SIGNAL_INFO {
 	{ SignalID::MPPT_1_InputVoltage,   { "MPPT 1 Input Voltage",   "V", false, CanID::MPPT_1_POWER_MEASUREMENTS } },
 	{ SignalID::MPPT_1_OutputVoltage,  { "MPPT 1 Output Voltage",  "V", false, CanID::MPPT_1_POWER_MEASUREMENTS } },
@@ -28,9 +27,11 @@ const std::unordered_map<SignalID, SignalInfo> SIGNAL_INFO {
 
 SignalManager::SignalManager() {}
 SignalManager::~SignalManager() {}
+
 const std::unordered_map<SignalID, Signal>& SignalManager::get_signals() const {
 	return signals;
 }
+
 void SignalManager::update_signal(SignalID id, Signal data) {
 	auto it = signals.find(id);
 	if (it != signals.end()) {
