@@ -49,6 +49,6 @@ namespace Simulation {
             // this will decode the buffer, call the correct parsing function from the CAN Library and then update the signals to display the data
         }
 
-        Client::printData();
+        Client::print_data();
     }
 }

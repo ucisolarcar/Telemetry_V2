@@ -16,13 +16,5 @@
 
 namespace Decoders {
 	void mppt_power_measurements(uint8_t buffer[BUF_SIZE]);
+	// TODO: write all other decoders
 }
-
-
-
-/*
-TODO - define decoders for every possible CAN ID frame
-
-
-think about what errors I should be checking and if there should be any exception handling
-*/
